@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Electronics Store</title>
+  <!-- Bootstrap CSS -->
+  
+    <!-- Bootstrap 5 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    
+    <!-- Bootstrap Icons CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+  
+  
+  <!-- Custom CSS -->
+
+ 
+  <style>
+    body {
+      padding-top: 80px; /* adjust based on your navbar height */
+    }
+    /* General Reset */
+
+
+  
+  
+body,html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+ 
+  }
+  .page-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .container-fluid {
+    flex: 1;
+  }
+ 
+  
+  /* Top Bar */
+  .top-bar {
+    background-color: #343a40; /* or black as per your preference */
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .top-bar .message,
+  .top-bar .phone-info,
+  .top-bar .currency,
+  .top-bar .order-tracking,
+  .top-bar .shopping-bag {
+    display: flex;
+    align-items: center;
+  }
+  
+  .top-bar i {
+    margin-right: 5px; /* Space between icon and text */
+    margin-bottom: 0%;
+  }
+  
+  .top-bar .phone-info,
+  .top-bar .message {
+    margin-left: 10px;
+  }
+  
+  .top-bar .currency,
+  .top-bar .order-tracking,
+  .top-bar .shopping-bag {
+    margin-left: 20px;
+  }
+  
+  .top-bar .dropdown-toggle {
+    background: transparent;
+    color: white;
+    border: none;
+    padding: 0;
+  }
+  
+  .top-bar .dropdown-menu {
+    background-color: #343a40; /* Matches top-bar */
+  }
+  
+  .top-bar .dropdown-item {
+    color: white;
+  }
+  
+  .top-bar .dropdown-item:hover {
+    background-color: #007bff;
+  }
+  
+  .top-bar .shopping-bag span,
+  .top-bar .order-tracking span {
+    margin-left: 5px;
+  }
+  /* Ensure icons are visible */
+.bi {
+    font-size: 1.5rem; /* Adjust size as needed */
+    color: #fff; /* Set icon color */
+  }
+  .navbar {
+    min-height: 70px; /* Fixed height */
+    padding: 0;
+  }
+  
+  .navbar-brand {
+    padding: 0;
+    line-height: 1;
+  }
+  
+  .nav-link {
+    padding: 10px 15px !important;
+    margin: 0 5px;
+  }
+  
+  .navbar-nav {
+    align-items: center;
+  }
+  
+  .dropdown-menu {
+    margin-top: 10px;
+  }
+  
+  /* Banner */
+  .hero-banner {
+    background-image: url('ele2.avif'); /* Replace with your own */
+    background-size: cover;
+    background-position: center;
+    padding: 100px 20px;
+    text-align: center;
+    color: white;
+    position: relative;
+  }
+  
+  .hero-banner::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .search-box {
+    margin-top: 20px;
+    display: inline-flex;
+    background-color: white;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+  .search-box input[type="text"] {
+    padding: 10px;
+    border: none;
+    outline: none;
+    width: 300px;
+  }
+  
+  .search-box button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0 15px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .search-box button i {
+    pointer-events: none;
+  }
+  
+  
+  /* Sidebar */
+  /* Sidebar */
+.sidebar {
+    padding: 1rem;
+   }
+  
+  .categories-box {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  .categories-box h3 {
+    margin-bottom: 15px;
+    font-size: 20px;
+    border-bottom: 2px solid #dee2e6;
+    padding-bottom: 10px;
+  }
+  
+  .categories-box ul li {
+    padding: 8px 0;
+  }
+  
+  .categories-box ul li a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  .categories-box ul li a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+  
+  /* Product Cards */
+  /* Product Card Container */
+  .card {
+    border: none;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  
+  product-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
+  
+  
+  .card-img-top {
+    max-height: 100%;
+    max-width: 100%;
+    width: auto;
+    padding: 15px;
+  }
+  
+  .card-body {
+    border-top: 1px solid #eee;
+  }
+  
+  .btn-success {
+    background-color: #7BAE43;
+    border-color: #7BAE43;
+  }
+  
+.col-lg-9 {
+    padding-left: 1rem;
+  }
+  
+  /* Individual Product Cards (optional if needed) */
+  .card {
+    margin-bottom: 20px;
+  }
+  
+  .card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease-in-out;
+    background-color: #ffffff;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .card-img-top {
+    height: 180px;
+    object-fit: cover;
+  }
+  
+  .card-body {
+    text-align: center;
+  }
+  
+  .card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+  .card-text {
+    font-size: 0.95rem;
+    color: #6c757d;
+    margin-bottom: 15px;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    border: none;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .categories-box {
+      margin-bottom: 30px;
+    }
+  }
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+  }
+  .pagination a {
+    color: #333;
+    padding: 10px 15px;
+    margin: 0 5px;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  .pagination a.active,
+  .pagination a:hover {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+  }
+  
+  /* Logo Carousel */
+  .logo-carousel img {
+    max-height: 60px;
+    object-fit: contain;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .logo-carousel img:hover {
+    transform: scale(1.1);
+  }
+  
+  .brand-carousel {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .carousel-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-bottom: 2px solid #333;
+    display: inline-block;
+    padding-bottom: 5px;
+  }
+  
+  .swiper {
+    width: 100%;
+    padding: 20px 0;
+  }
+  
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .swiper-slide img {
+    max-width: 100px;
+    max-height: 50px;
+    filter: grayscale(80%);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .swiper-slide img:hover {
+    filter: grayscale(0%);
+    transform: scale(1.1);
+  }
+  
+  
+  /* Newsletter */
+  .newsletter {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+  }
+  .newsletter h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  .newsletter input[type="email"] {
+    padding: 10px;
+    width: 300px;
+    max-width: 80%;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+  .newsletter button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .newsletter button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Footer */
+ /* Your existing styles go here */
+
+/* Footer styles should be added after other styles */
+/* Ensure body and html elements take up full height */
+
+  
+  /* Footer styles should be added after other styles */
+  .footer {
+    background-color: #222;
+    color: #eee;
+    padding: 40px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+    font-family: 'Segoe UI', sans-serif;
+    position: relative;
+    /* margin-top: auto; Ensures the footer is pushed to the bottom */
+    clear: both; /* Clears any floated elements above */
+  }
+  
+  /* Footer section styling */
+  .footer-section {
+    flex: 1 1 250px;
+    min-width: 200px;
+  }
+  
+  /* Other footer styles remain unchanged */
+  .footer-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #fff;
+    text-transform: uppercase;
+    border-bottom: 1px solid #555;
+    padding-bottom: 5px;
+  }
+  
+  .footer-links {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-links li {
+    margin-bottom: 8px;
+  }
+  
+  .footer-links li a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  .footer-links li a:hover {
+    color: #fff;
+  }
+  
+  .contact-info p {
+    margin: 6px 0;
+    color: #ccc;
+    font-size: 14px;
+  }
+  
+  .social-icons {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+  }
+  
+  .social-icons a {
+    color: #ccc;
+    font-size: 18px;
+    transition: color 0.3s;
+  }
+  
+  .social-icons a:hover {
+    color: #fff;
+  }
+  
+  .copyright {
+    text-align: center;
+    width: 100%;
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 1px solid #444;
+    font-size: 14px;
+    color: #bbb;
+  }
+ 
+  /* Responsive fix */
+  @media (max-width: 768px) {
+    .footer {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .footer-section {
+      width: 100%;
+    }
+  
+    .copyright {
+      text-align: left;
+    }
+  }
+  
+  </style>
+  
+
+</head>
+<body>
+  
+    
+        <!-- Top Bar -->
+        <div class="top-bar">
+          <div class="message">
+            <i class="bi bi-envelope-fill"></i>
+            <span>info@yourstoregmail.com</span>
+          </div>
+      
+          <div class="phone-info">
+            <i class="bi bi-telephone"></i>
+            <span>+123 456 7890</span>
+          </div>
+      
+          <!-- Div for dropdown -->
+          <div class="currency">
+            <!-- Icon of Currency -->
+            <i class="bi bi-coin"></i>
+            <!-- Content -->
+            <div class="dropdown show">
+              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                CURRENCY
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li><a class="dropdown-item" href="#">PKR</a></li>
+                <li><a class="dropdown-item" href="#">JPY</a></li>
+                <li><a class="dropdown-item" href="#">CAD</a></li>
+              </ul>
+            </div>
+          </div>
+      
+          <div class="order-tracking">
+            <i class="bi bi-radar"></i>
+            <span>Order Tracking</span>
+          </div>
+      
+          <div class="shopping-bag">
+            <i class="bi bi-bag-fill"></i>
+            <span>Shopping Bag</span>
+          </div>
+        </div>
+      
+      
+   
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm py-3">
+            <div class="container">
+              <div class="d-flex align-items-center">
+                <span class="navbar-brand fw-bold fs-3 me-0">
+                  <span style="color:black">LOGO</span>
+                  <span style="color:#7BAE43">HERE</span>
+                </span>
+                
+                <div class="collapse navbar-collapse ms-4">
+                  <div class="navbar-nav">
+                    <a class="nav-link active" href="#">Home</a>
+                    <a class="nav-link" href="#">Categories</a>
+                    <a class="nav-link" href="#">Products</a>
+                    <a class="nav-link" href="#">Contact</a>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="d-flex align-items-center">
+                <div class="dropdown">
+                  <a class="btn btn-outline-secondary dropdown-toggle" href="#" role="button" 
+                     data-bs-toggle="dropdown" aria-expanded="false">
+                    HELP
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#">Support</a></li>
+                    <li><a class="dropdown-item" href="#">FAQ</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </nav>
+</header>  
+  <main>
+  <!-- Hero Banner -->
+<div class="hero-banner">
+    <div class="hero-content">
+      <h1>Lorem Ipsum is simply dummy text of the printing and typesetting</h1>
+      <div class="search-box">
+        <input type="text" placeholder="Search your Products...">
+        <button>&#128269;</button> <!-- Unicode fallback -->
+ <!-- Optional icon -->
+      </div>
+    </div>
+  </div>
+  
+  
+  <!-- Main Content Area -->
+      <div class="container-fluid mt-4">
+        <div class="row">
+      
+          <!-- Sidebar -->
+          <div class="col-lg-3 sidebar">
+            <div class="categories-box">
+              <h3>Categories</h3>
+              <ul class="list-unstyled">
+                <li><a href="#">Mobile Phones</a></li>
+                <li><a href="#">Laptops</a></li>
+                <li><a href="#">Television</a></li>
+                <li><a href="#">Tablets</a></li>
+                <li><a href="#">Ipads</a></li>
+                <li><a href="#">Pcs</a></li>
+                <li><a href="#">Others</a></li>
+              </ul>
+            </div>
+          </div>
+     <!-- Product Cards -->
+<div class="col-md-9">
+  <div class="row">
+    <!-- Smartphone 1 -->
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <div class="image-container" style="height: 200px; overflow: hidden; background: #f8f9fa; display: flex; align-items: center; justify-content: center;">
+          <img src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c21hcnRwaG9uZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" 
+               class="card-img-top img-fluid"
+               style="object-fit: contain; max-height: 100%; padding: 15px;"
+               alt="Premium Smartphone">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Premium Smartphone</h5>
+          <p class="card-text">6.7" AMOLED Display, 128GB Storage</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="text-success fw-bold">$699.99</span>
+            <a href="#" class="btn btn-success">Buy Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Laptop -->
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <div class="image-container" style="height: 200px; overflow: hidden; background: #f8f9fa; display: flex; align-items: center; justify-content: center;">
+          <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGxhcHRvcHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" 
+               class="card-img-top img-fluid"
+               style="object-fit: contain; max-height: 100%; padding: 15px;"
+               alt="Ultrabook Laptop">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Ultrabook Laptop</h5>
+          <p class="card-text">Intel i7, 16GB RAM, 512GB SSD</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="text-success fw-bold">$1,199.99</span>
+            <a href="#" class="btn btn-success">Buy Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Smart TV -->
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <div class="image-container" style="height: 200px; overflow: hidden; background: #f8f9fa; display: flex; align-items: center; justify-content: center;">
+          <img src="https://images.unsplash.com/photo-1593784991095-a205069470b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8dHZ8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" 
+               class="card-img-top img-fluid"
+               style="object-fit: contain; max-height: 100%; padding: 15px;"
+               alt="4K Smart TV">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">4K Smart TV</h5>
+          <p class="card-text">55" 4K UHD with HDR</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="text-success fw-bold">$899.99</span>
+            <a href="#" class="btn btn-success">Buy Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wireless Earbuds -->
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <div class="image-container" style="height: 200px; overflow: hidden; background: #f8f9fa; display: flex; align-items: center; justify-content: center;">
+          <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8ZWFyYnVkc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" 
+               class="card-img-top img-fluid"
+               style="object-fit: contain; max-height: 100%; padding: 15px;"
+               alt="Wireless Earbuds">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Wireless Earbuds</h5>
+          <p class="card-text">Noise Cancelling, 30hr Battery</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="text-success fw-bold">$149.99</span>
+            <a href="#" class="btn btn-success">Buy Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gaming Console -->
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <div class="image-container" style="height: 200px; overflow: hidden; background: #f8f9fa; display: flex; align-items: center; justify-content: center;">
+          <img src="https://images.unsplash.com/photo-1607853202273-797f1c22a38e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z2FtaW5nJTIwY29uc29sZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" 
+               class="card-img-top img-fluid"
+               style="object-fit: contain; max-height: 100%; padding: 15px;"
+               alt="Gaming Console">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Gaming Console</h5>
+          <p class="card-text">1TB SSD, 4K Gaming</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="text-success fw-bold">$499.99</span>
+            <a href="#" class="btn btn-success">Buy Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- Product 1 - Wireless Earbuds -->
+<div class="col-md-4 mb-4">
+  <div class="card h-100">
+    <div class="image-container" style="height: 200px; overflow: hidden; background: #f8f9fa; display: flex; align-items: center; justify-content: center;">
+      <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8d2lyZWxlc3MlMjBlYXJidWRzfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" 
+           class="card-img-top img-fluid"
+           style="object-fit: contain; max-height: 100%; padding: 15px;"
+           alt="Wireless Earbuds">
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Wireless Earbuds</h5>
+      <p class="card-text">Noise Cancelling, 30hr Battery</p>
+      <div class="d-flex justify-content-between align-items-center">
+        <span class="text-success fw-bold">$179.99</span>
+        <a href="#" class="btn btn-success">Buy Now</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Product 2 - Bluetooth Speaker -->
+<div class="col-md-4 mb-4">
+  <div class="card h-100">
+    <div class="image-container" style="height: 200px; overflow: hidden; background: #f8f9fa; display: flex; align-items: center; justify-content: center;">
+      <img src="https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Ymx1ZXRvb3RoJTIwc3BlYWtlcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" 
+           class="card-img-top img-fluid"
+           style="object-fit: contain; max-height: 100%; padding: 15px;"
+           alt="Bluetooth Speaker">
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Bluetooth Speaker</h5>
+      <p class="card-text">360° Sound, IPX7 Waterproof</p>
+      <div class="d-flex justify-content-between align-items-center">
+        <span class="text-success fw-bold">$129.99</span>
+        <a href="#" class="btn btn-success">Buy Now</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Product 3 - Portable SSD -->
+<div class="col-md-4 mb-4">
+  <div class="card h-100">
+    <div class="image-container" style="height: 200px; overflow: hidden; background: #f8f9fa; display: flex; align-items: center; justify-content: center;">
+      <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c3NkJTIwZHJpdmV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" 
+           class="card-img-top img-fluid"
+           style="object-fit: contain; max-height: 100%; padding: 15px;"
+           alt="Portable SSD">
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Portable SSD</h5>
+      <p class="card-text">1TB Storage, USB 3.2 Gen 2</p>
+      <div class="d-flex justify-content-between align-items-center">
+        <span class="text-success fw-bold">$89.99</span>
+        <a href="#" class="btn btn-success">Buy Now</a>
+      </div>
+    </div>
+  </div>
+</div>
+    <!-- Smart Watch -->
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <div class="image-container" style="height: 200px; overflow: hidden; background: #f8f9fa; display: flex; align-items: center; justify-content: center;">
+          <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c21hcnQlMjB3YXRjaHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" 
+               class="card-img-top img-fluid"
+               style="object-fit: contain; max-height: 100%; padding: 15px;"
+               alt="Smart Watch">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Smart Watch</h5>
+          <p class="card-text">Health Tracking, Waterproof</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="text-success fw-bold">$249.99</span>
+            <a href="#" class="btn btn-success">Buy Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- Pagination -->
+<div class="pagination">
+    <a href="#">&laquo;</a>
+    <a href="#" class="active">1</a>
+    <a href="#">2</a>
+    <a href="#">3</a>
+    <a href="#">4</a>
+    <a href="#">5</a>
+    <a href="#">&raquo;</a>
+  </div>
+  
+  <!-- Logo Carousel -->
+ 
+ 
+    
+  <!-- Logo Carousel -->
+  <div class="container text-center mt-5">
+    <h4 class="mb-3">Our  Brands</h4>
+    <div class="logo-carousel d-flex justify-content-center flex-wrap gap-4">
+      <!-- logos here -->
+    </div>
+  </div>
+  
+<div class="logo-carousel d-flex justify-content-center flex-wrap gap-4 py-3">
+    <img src="Image/samsung.png" alt="Samsung Logo" width="100" height="auto">
+    <img src="Image/htc.png" alt="Apple Logo" width="100" height="auto">
+    <img src="Image/LG_symbol.svg.png" alt="Dell Logo" width="100" height="auto">
+    <img src="Image/Canon-Logo.png" alt="HP Logo" width="100" height="auto">
+  </div>
+     <!-- Arrows -->
+     <div class="swiper-button-next"></div> 
+     <div class="swiper-button-prev"></div>
+   </div>
+ </section>
+  
+  <!-- Newsletter Signup -->
+  <div class="newsletter">
+    <h2>Subscribe to Our Newsletter</h2>
+    <p>Stay updated with the latest offers and products!</p>
+    <form>
+      <input type="email" placeholder="Enter your email">
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+</main>
+  
+</div>
+ 
+
+  
+  
+  <footer class="footer">
+    <div class="footer-section">
+        <div class="footer-title">OUR POLICIES</div>
+        <ul class="footer-links">
+            <li><a href="#">Return Policy</a></li>
+            <li><a href="#">Terms Of Use</a></li>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+        </ul>
+    </div>
+    
+    <div class="footer-section">
+        <div class="footer-title">GET IN TOUCH</div>
+        <div class="contact-info">
+            <p>Email: info@company.com</p>
+            <p>Phone: +1 234 567 890</p>
+            <p>Address: 123 Main Street, City</p>
+            <p>Postal Code: 3254052</p>
+        </div>
+    </div>
+    
+   <!-- Add in <head> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- Footer Section -->
+<div class="footer-section">
+  <div class="footer-title">CONNECT W/ US</div>
+  <div class="social-icons d-flex justify-content-center gap-4 py-3">
+      <a href="https://www.facebook.com/YourPageName" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://twitter.com/YourHandle" target="_blank"><i class="fab fa-twitter"></i></a>
+      <a href="https://www.instagram.com/YourUsername" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.linkedin.com/company/YourCompany" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://www.youtube.com/YourChannel" target="_blank"><i class="fab fa-youtube"></i></a>
+  </div>
+
+  <!-- Contact Info -->
+  <p class="text-center text-white mt-2">
+    Email: <a href="mailto:support@electronics-store.com" class="text-white">support@electronics-store.com</a>
+  </p>
+  <p class="text-center text-white">
+    Phone: <a href="tel:+11234567890" class="text-white">+1 (123) 456-7890</a>
+  </p>
+</div>
+
+    <div class="copyright">
+        © 2017 Company. All Rights Reserved.
+    </div>
+</footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+</body>
+</html>
